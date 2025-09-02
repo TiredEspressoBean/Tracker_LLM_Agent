@@ -3,5 +3,12 @@
   "graphs": {
     "agent": "./src/react_agent/graph.py:graph"
   },
-  "env": ".env"
+  "env": ".env",
+  "http": {
+    "cors": {
+      "allow_origins": ["https://govtracker.ambac.local:8123"],
+      "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "allow_headers": ["Content-Type", "Authorization"]
+    }
+  }
 }
