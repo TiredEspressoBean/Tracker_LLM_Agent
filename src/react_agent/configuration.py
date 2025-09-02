@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+from datetime import date
 from dataclasses import dataclass, field, fields
 from typing import Annotated
 
@@ -24,10 +26,24 @@ class Configuration:
     )
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
-        default="ollama/qwen3:4b",
+        default="ollama/gpt-OSS:20b",
         metadata={
             "description": "The name of the language model to use for the agent's main interactions. "
             "Should be in the form: provider/model-name."
+        }
+    )
+
+    django_api_base_url: str = field(
+        default_factory=lambda: os.getenv("DJANGO_API_BASE_URL", "http://localhost:8000/api"),
+        metadata={
+            "description": "Base URL for the Django API endpoints (from DJANGO_API_BASE_URL env var)"
+        },
+    )
+
+    django_api_token: str = field(
+        default_factory=lambda: os.getenv("DJANGO_API_TOKEN", ""),
+        metadata={
+            "description": "Authentication token for Django API access (from DJANGO_API_TOKEN env var)"
         },
     )
 

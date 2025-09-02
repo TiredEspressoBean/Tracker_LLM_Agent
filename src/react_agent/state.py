@@ -53,8 +53,15 @@ class State(InputState):
     It is set to 'True' when the step count reaches recursion_limit - 1.
     """
 
-    # Additional attributes can be added here as needed.
-    # Common examples include:
-    # retrieved_documents: List[Document] = field(default_factory=list)
-    # extracted_entities: Dict[str, Any] = field(default_factory=dict)
-    # api_connections: Dict[str, Any] = field(default_factory=dict)
+    # Manufacturing-specific state fields
+    query_plan: str = field(default="")
+    """The determined approach for handling the user's query (DOCUMENT_SEARCH, DATABASE_QUERY, HYBRID, etc.)"""
+
+    document_results: dict = field(default_factory=dict)
+    """Results from document search operations"""
+
+    database_results: dict = field(default_factory=dict)
+    """Results from database query operations"""
+
+    assembled_context: str = field(default="")
+    """Assembled context combining document and database information"""
