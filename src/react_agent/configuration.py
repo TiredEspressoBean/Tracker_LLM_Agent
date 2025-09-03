@@ -23,10 +23,11 @@ class Configuration:
             "description": "The system prompt to use for the agent's interactions. "
             "This prompt sets the context and behavior for the agent."
         },
+        base_url=os.getenv("OLLAMA_BASE_URL")
     )
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
-        default="ollama/tinyllama:1.1b",
+        default="ollama/llama3.1:8b",
         metadata={
             "description": "The name of the language model to use for the agent's main interactions. "
             "Should be in the form: provider/model-name."
