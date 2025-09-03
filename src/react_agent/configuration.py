@@ -22,8 +22,7 @@ class Configuration:
         metadata={
             "description": "The system prompt to use for the agent's interactions. "
             "This prompt sets the context and behavior for the agent."
-        },
-        base_url=os.getenv("OLLAMA_BASE_URL")
+        }, 
     )
 
     model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
